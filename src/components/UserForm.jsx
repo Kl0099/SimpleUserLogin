@@ -7,6 +7,18 @@ const UserForm = () => {
     email: "",
     address: "",
   });
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post("http://localhost:3000/users", {
+        name: userFormInputes.name,
+        email: userFormInputes.email,
+        phone: userFormInputes.phone,
+        address: userFormInputes.address,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className=" my-auto mx-auto w-1/3 border flex flex-col justify-between items-center">
       <h1 className=" text-3xl my-5">user form</h1>
@@ -55,6 +67,7 @@ const UserForm = () => {
       <button
         type="button"
         className=" rounded-md p-2 w-[80%] mt-5 bg-black text-white"
+        onClick={handleSubmit}
       >
         Submit
       </button>
